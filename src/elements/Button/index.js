@@ -8,7 +8,7 @@ export default function Button(props) {
   if(props.isLarge) className.push("btn-lg")
   if(props.isSmall) className.push("btn-sm")
   if(props.isBlock) className.push("btn-block")
-  if(props.hasShadow) className.push("btn-block")
+  if(props.hasShadow) className.push("btn-shadow")
  
   const onClick = () => {
     if(props.onClick) props.onClick()
@@ -35,7 +35,7 @@ export default function Button(props) {
       return(
         // eslint-disable-next-line react/jsx-no-target-blank
         <a href={props.href} 
-        className={className.join("")} 
+        className={className.join(" ")} 
         style={props.style} 
         target={props.target==="_blank" ?"_blank":undefined} 
         rel={props.target ==="_blank" ? "noopener noreferrer": undefined}
@@ -47,7 +47,7 @@ export default function Button(props) {
       return (
         <Link 
           to={props.href} 
-          className={className.join("")} 
+          className={className.join(" ")} 
           style={props.style} onClick={onClick}
           >
             {props.children}
@@ -56,9 +56,15 @@ export default function Button(props) {
     }
   }
 
-  return <button className={className.join("")} 
-  style={props.style} 
-  onClick={onClick}>{props.children}</button>
+  return ( 
+  <button 
+    className={className.join(" ")} 
+    style={props.style} 
+    onClick={onClick}
+    >
+      {props.children}
+    </button>
+  );
 }
 
 Button.propTypes = {
@@ -73,5 +79,6 @@ Button.propTypes = {
   isLarge: propTypes.bool,
   isBlock: propTypes.bool,
   isExternal: propTypes.bool,
+  isPrimary: propTypes.bool,
   hasShadow: propTypes.bool,
 }
